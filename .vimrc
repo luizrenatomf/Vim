@@ -14,6 +14,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'pangloss/vim-javascript'
 Plugin 'joegesualdo/jsdoc.vim'
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -57,11 +58,11 @@ let g:airline_solarized_bg='dark'
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-m> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 autocmd VimEnter * NERDTree
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
+" Terminal
 function Terminal()
 	" Verificar se há buffer bash aberto:
 	let meuterminal = bufname('bash')
@@ -76,15 +77,3 @@ endfunction
 map <C-t> :call Terminal()<CR>
 au TerminalOpen * if &buftype == 'terminal' | setlocal nobuflisted | endif
 
-" JavaScript syntax
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_ngdoc = 1
-
-" Fechar automaticamente "'([{
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
